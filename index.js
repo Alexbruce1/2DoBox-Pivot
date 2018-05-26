@@ -28,6 +28,10 @@ function emptyInputs(event) {
     // $('form')[0].reset();
 };
 
+
+
+
+
 // function card(title, body, id) {
 //     this.title = title;
 //     this.body = body;
