@@ -1,8 +1,8 @@
 var title = $('#title-input').val();
 var body = $('#body-input').val();
 var qualityVariable = "swill";
+var localKeys = [];
 
-$('.bottom-box').on('click', deleteCard);
 // $('.delete-button').on('click', )
 $('.save-btn').on('click', emptyInputs);
 $(document).ready(loadSavedCards);
@@ -46,6 +46,7 @@ function createCard(title , body , quality, id) {
                                 <hr> 
                             </div>`
     );
+    $('.delete-button').on('click', deleteCard);
 };
 
 function localStoreCard(title, body, quality, id) {
@@ -57,7 +58,7 @@ function localStoreCard(title, body, quality, id) {
     localStorage.setItem(id, cardString); 
     var cardKey = id;
     console.log('cardKey is: ' + cardKey);
-    return cardKey;
+    localKeys.push(cardKey[i]);
 };
 
 
@@ -71,10 +72,12 @@ function loadSavedCards() {
 
 function deleteCard () {
     // var cardHTMLId = cardHTML[0].id;
+    var id = $(event.target).closest('.card-container').attr(id);
+    console.log(id);
     $(event.target).closest('.card-container').remove();
     console.log()
-    // localStorage.removeItem($(this).parents('.card-container').attr(this.id));
-    localStorage.removeItem($(event.target).closest('.card-container'));
+    localStorage.removeItem($(this).parents('.card-container').attr(id));
+    // localStorage.removeItem();
 
 }
 
