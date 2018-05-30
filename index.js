@@ -1,15 +1,24 @@
+$(document).ready(loadSavedCards)
+$('.save-btn').on('click', emptyInputs);
+$('#title-input').on('keyup', disableButton);
+$('#body-input').on('keyup', disableButton);
 $('.bottom-box').on('keyup', '.title-of-card', updateEditedTitle);
 $('.bottom-box').on('keyup', '.body-of-card', updateEditedBody);
 $('.bottom-box').on('click', '.delete-button', deleteCard);
 $('.bottom-box').on('click', '.upvote', upvoteCard);
 $('.bottom-box').on('click', '.downvote', downvoteCard);
+$('.bottom-box').on('click', '.completed-button', completeTask);
 
-
-
-// var title = $('#title-input').val();
-// var body = $('#body-input').val();
 var qualityVariable = "Normal";
 
+function disableButton() {
+    var saveButton = $('.save-btn');
+    if ($('#title-input').val() !== "" && $('#body-input').val() !== "") {
+        $('.save-btn').removeAttr('disabled');
+    } else if ($('#title-input').val() === "" || $('#body-input').val() === "") {
+        $('.save-btn').attr("disabled", true);
+    }
+}
 // $('.delete-button').on('click', )
 $('.save-btn').on('click', emptyInputs);
 $(document).ready(loadSavedCards)
@@ -39,7 +48,6 @@ function emptyInputs(event) {
 };
 
 
-
 function createCard(title , body , quality, id) {
     $('.bottom-box').prepend(`<div data-set="${id}" id="${id}"class="card-container">
                                 <h2 class="title-of-card" contenteditable="true">${title}</h2>
@@ -49,6 +57,7 @@ function createCard(title , body , quality, id) {
                                 <button class="downvote"></button> 
                                 <p class="quality">quality:
                                     <span class="qualityVariable">${quality}</span>
+                                    <button class="completed-button">Completed Task</button>
                                 </p>
                                 <hr> 
                             </div>`
@@ -91,6 +100,10 @@ function deleteCard (e) {
     console.log(key);
     $(event.target).closest('.card-container').remove();
     localStorage.removeItem(key);
+}
+
+function completeTask() {
+    console.log('yes')
 }
 
 
