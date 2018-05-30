@@ -16,6 +16,13 @@ $(document).ready(loadSavedCards)
 
 
 
+function Card(title, body, quality) {
+    this.title = title;
+    this.body = body;
+    this.quality = 'Normal';
+    this.id = Date.now();
+    
+}
 
 
 function emptyInputs(event) {
@@ -23,18 +30,14 @@ function emptyInputs(event) {
     if ($('#title-input').val() === "" || $('#body-input').val() === "") {
         alert('Please choose valid inputs');
     } else {
-        createCard($('#title-input').val(), $('#body-input').val(), qualityVariable, Date.now());
-        localStoreCard($('#title-input').val(), $('#body-input').val(), qualityVariable, Date.now()); 
+        var newCard = new Card($('#title-input').val(), $('#body-input').val(), qualityVariable)
+        createCard(newCard.title, newCard.body, newCard.quality, newCard.id);
+        console.log(newCard.id)
+        localStorage.setItem(newCard.id, JSON.stringify(newCard)); 
         $('form')[0].reset();
     }  
 };
 
-function Card(title, body, id) {
-    this.title = title;
-    this.body = body;
-    this.id = Date.now();
-    this.quality = 'Normal';
-}
 
 
 function createCard(title , body , quality, id) {
@@ -84,9 +87,9 @@ function loadSavedCards() {
 function deleteCard (e) {
     var cardHTML = $(event.target).closest('.card-container');
     var cardHTMLId = cardHTML[0].index;
-    $(event.target).closest('.card-container').remove();
     var key = $(event.target).closest('.card-container')[0].dataset.set;
-    // localStorage.removeItem($(this).parents('.card-container').attr(id));
+    console.log(key);
+    $(event.target).closest('.card-container').remove();
     localStorage.removeItem(key);
 }
 
