@@ -16,6 +16,13 @@ $(document).ready(loadSavedCards)
 
 
 
+function Card(title, body, quality) {
+    this.title = title;
+    this.body = body;
+    this.quality = 'Normal';
+    this.id = Date.now();
+    
+}
 
 
 function emptyInputs(event) {
@@ -23,22 +30,18 @@ function emptyInputs(event) {
     if ($('#title-input').val() === "" || $('#body-input').val() === "") {
         alert('Please choose valid inputs');
     } else {
-        createCard($('#title-input').val(), $('#body-input').val(), qualityVariable, Date.now());
-        localStoreCard($('#title-input').val(), $('#body-input').val(), qualityVariable, Date.now()); 
+        var newCard = new Card($('#title-input').val(), $('#body-input').val(), qualityVariable)
+        createCard(newCard.title, newCard.body, newCard.quality, newCard.id);
+        console.log(newCard.id)
+        localStorage.setItem(newCard.id, JSON.stringify(newCard)); 
         $('form')[0].reset();
     }  
 };
 
-function Card(title, body, id) {
-    this.title = title;
-    this.body = body;
-    this.id = Date.now();
-    this.quality = 'Normal';
-}
 
 
 function createCard(title , body , quality, id) {
-    $('.bottom-box').prepend(`<div id="${id}"class="card-container">
+    $('.bottom-box').prepend(`<div data-set="${id}" id="${id}"class="card-container">
                                 <h2 class="title-of-card" contenteditable="true">${title}</h2>
                                 <button class="delete-button"></button>
                                 <p class="body-of-card" contenteditable="true">${body}</p>
@@ -76,7 +79,7 @@ function loadSavedCards() {
     for (var i = 0; i < localStorage.length; i++) {
         var storedCard = localStorage.getItem(localStorage.key(i));
         var parsedCard = JSON.parse(storedCard);
-        createCard(parsedCard.title, parsedCard.body, parsedCard.quality);
+        createCard(parsedCard.title, parsedCard.body, parsedCard.quality, parsedCard.id);
     }
     var localStorageArray = Object.keys(localStorage);
 }
@@ -84,10 +87,10 @@ function loadSavedCards() {
 function deleteCard (e) {
     var cardHTML = $(event.target).closest('.card-container');
     var cardHTMLId = cardHTML[0].index;
+    var key = $(event.target).closest('.card-container')[0].dataset.set;
+    console.log(key);
     $(event.target).closest('.card-container').remove();
-    console.log(cardHTMLId);
-    // localStorage.removeItem($(this).parents('.card-container').attr(id));
-    localStorage.removeItem(cardHTMLId);
+    localStorage.removeItem(key);
 }
 
 
