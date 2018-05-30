@@ -14,12 +14,27 @@
         <h1 class="idea">idea</h1>
         <h1 class="box">Box</h1>
         <input aria-label="idea title" id="title-input" type="text" placeholder="Title"><br/>
-        <input aria-label="idea body" id="body-input" type="text" placeholder="Body"><br/>  
-        <button class="save-btn">save</button><br/>
+        <input aria-label="task body" id="body-input" type="text" placeholder="Task"><br/>  
+        <button class="save-btn" disabled>save</button><br/>
       </form>
     </article>
-    <input aria-label="search saved ideas" id="search-input" type="text" placeholder="Search">
+    <input aria-label="filter saved ideas" id="search-input" type="text" placeholder="Filter">
     <article aria-label="idea container" class="bottom-box">
+
+      <div id="${id}"class="completed card-container">
+        <h2 class="title-of-card" contenteditable="true">${title}</h2>
+        <button class="delete-button"></button>
+        <p class="body-of-card" contenteditable="true">${body}</p>
+        <button class="upvote"></button>
+        <button class="downvote"></button> 
+        <p class="quality">quality:
+            <span class="qualityVariable">${quality}</span>
+            <button class="completed-button">Completed Task</button>
+        </p>
+        <hr> 
+      </div>
+
+
     </article>
   </section>
   <script src="./jquery/jquery-3.2.1.js"></script>

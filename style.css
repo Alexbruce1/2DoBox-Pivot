@@ -67,6 +67,11 @@ h1{
     background-color: #045e55;
 }
 
+.save-btn:disabled {
+    background-color: #7fd3ce;
+    cursor: not-allowed;
+}
+
 input {
     align-items: center;
     display: flex;
@@ -80,6 +85,11 @@ input {
     margin: auto;
     position: relative;
     width: 45%;
+}
+
+.completed {
+    background-color: #e5e5e5;
+    border: 5px solid #e5e5e5;
 }
 
 .card {
@@ -165,6 +175,14 @@ button {
     background-size: cover;
     height: 20px;
     width: 20px;
+}
+
+.completed-button {
+    background-color: #939598;
+    border-radius: 10px;
+    color: #fcfcfc;
+    display: inline;
+    height: 20px;
 }
 
 @media(max-width: 640px){
