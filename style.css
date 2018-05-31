@@ -14,11 +14,22 @@ body {
 }
 
 .top-box {
-    background-color: #e5f3f2;
+    background: linear-gradient(90deg, #e5edf3, #f3e5e6);
     box-sizing: border-box;
     height: 300px;
     margin: 0;
     text-align: center;
+}
+
+.text-input:focus {
+    background-color: #c2e3e1;
+    border: none;
+    outline: none;
+    transition-duration: .5s;
+}
+
+.input-field {
+    margin-top: 1em;
 }
 
 h1{
@@ -107,10 +118,10 @@ input {
 }
 
 h2 {
-   color: #6d6e71; 
-   display: inline-block;
-   font-family: 'Roboto Slab', serif;
-   font-size: 150%;
+ color: #6d6e71; 
+ display: inline-block;
+ font-family: 'Roboto Slab', serif;
+ font-size: 150%;
 }
 
 p {
@@ -195,4 +206,3 @@ button {
         border: solid #999 1px;
     }
 }
-
