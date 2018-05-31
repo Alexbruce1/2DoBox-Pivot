@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>ideaBox</title>
+  <title>2DoBox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:700" rel="stylesheet">
@@ -11,32 +11,17 @@
   <section aria-label="input section" class="container box">
     <article class="top-box">
       <form aria-label="input form">
-        <h1 class="idea">idea</h1>
+        <h1 class="idea">2Do</h1>
         <h1 class="box">Box</h1>
-        <input aria-label="idea title" id="title-input" type="text" placeholder="Title"><br/>
-        <input aria-label="task body" id="body-input" type="text" placeholder="Task"><br/>  
-        <button class="save-btn" disabled>save</button><br/>
+        <input aria-label="idea title" id="title-input" type="text" placeholder="Title" class="input-field text-input">
+        <input aria-label="task body" id="body-input" type="text" placeholder="Task" class="input-field text-input"> 
+        <button aria-label="save button" class="input-field save-btn" disabled>save</button>
       </form>
     </article>
     <input aria-label="filter saved ideas" id="search-input" type="text" placeholder="Filter">
     <article aria-label="idea container" class="bottom-box">
-
-      <div id="${id}"class="completed card-container">
-        <h2 class="title-of-card" contenteditable="true">${title}</h2>
-        <button class="delete-button"></button>
-        <p class="body-of-card" contenteditable="true">${body}</p>
-        <button class="upvote"></button>
-        <button class="downvote"></button> 
-        <p class="quality">quality:
-            <span class="qualityVariable">${quality}</span>
-            <button class="completed-button">Completed Task</button>
-        </p>
-        <hr> 
-      </div>
-
-
     </article>
   </section>
   <script src="./jquery/jquery-3.2.1.js"></script>
-  <script src="./index.js"></script>
+  <script src="./script.js"></script>
 </body>

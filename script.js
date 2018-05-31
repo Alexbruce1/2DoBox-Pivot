@@ -10,8 +10,7 @@ $('.bottom-box').on('click', '.downvote', downvoteCard);
 $('.bottom-box').on('click', '.upvote', updateCardQuality);
 $('.bottom-box').on('click', '.downvote', updateCardQuality);
 $('.bottom-box').on('click', '.completed-button', completeTask);
-
-// var qualityVariable = "Normal";
+$('.save-btn').on('click', emptyInputs);
 
 function disableButton() {
     var saveButton = $('.save-btn');
@@ -21,21 +20,13 @@ function disableButton() {
         $('.save-btn').attr("disabled", true);
     }
 }
-// $('.delete-button').on('click', )
-$('.save-btn').on('click', emptyInputs);
-$(document).ready(loadSavedCards)
-
-
-
 
 function Card(title, body, quality) {
     this.title = title;
     this.body = body;
     this.quality = 'Normal';
-    this.id = Date.now();
-    
+    this.id = Date.now();  
 }
-
 
 function emptyInputs(e) {
     event.preventDefault();
@@ -62,22 +53,11 @@ function createCard(title , body , quality, id) {
                                 <button class="downvote"></button> 
                                 <p class="quality">quality:
                                     <span class="qualityVariable">${quality}</span>
-                                    <button class="completed-button">Completed Task</button>
                                 </p>
                                 <hr> 
                             </div>`
     );
 };
-
-function updateEditedTitle() {
-    var ideaTitle = $('.title-of-card').text;
-    console.log(ideaTitle);
-}
-
-function updateEditedBody() {
-    var ideaBody = $('#body-input').val();
-    console.log('body');
-}
 
 function localStoreCard(title, body, quality, id) {
     var ideaTitle = $('#title-input').val();
@@ -112,31 +92,9 @@ function deleteCard (e) {
     var cardHTML = $(event.target).closest('.card-container');
     var cardHTMLId = cardHTML[0].index;
     var key = $(event.target).closest('.card-container')[0].dataset.set;
-    console.log(key);
     $(event.target).closest('.card-container').remove();
     localStorage.removeItem(key);
 }
-
-function completeTask() {
-    console.log('yes')
-}
-
-
-// function cardObject() {
-//     return {
-//         title: title,
-//         body: body,
-//         quality: qualityVariable
-//     };
-// }
-
-// $.each(localStorage, function(key) {
-//     var cardData = JSON.parse(this);
-//     $( ".bottom-box" ).prepend(newCard(key, cardData.title, cardData.body, cardData.quality));
-// });
-
-
-
 
 function upvoteCard(event){
     var currentQuality = $($(event.target).siblings('p.quality').children()[0]).text().trim();
@@ -151,7 +109,6 @@ function upvoteCard(event){
         qualityVariable = 'Critical';
     }
     $($(event.target).siblings('p.quality').children()[0]).text(qualityVariable);
-    // saveVote(qualityVariable);
 }
 
 function downvoteCard(event){
@@ -167,5 +124,4 @@ function downvoteCard(event){
         qualityVariable = 'None';
     }
     $($(event.target).siblings('p.quality').children()[0]).text(qualityVariable);
-    // saveVote();
 }
