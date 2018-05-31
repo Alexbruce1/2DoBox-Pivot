@@ -1,15 +1,11 @@
 $(document).ready(loadSavedCards)
-$('.save-btn').on('click', emptyInputs);
 $('#title-input').on('keyup', disableButton);
 $('#body-input').on('keyup', disableButton);
-$('.bottom-box').on('keyup', '.title-of-card', updateEditedTitle);
-$('.bottom-box').on('keyup', '.body-of-card', updateEditedBody);
 $('.bottom-box').on('click', '.delete-button', deleteCard);
 $('.bottom-box').on('click', '.upvote', upvoteCard);
 $('.bottom-box').on('click', '.downvote', downvoteCard);
 $('.bottom-box').on('click', '.upvote', updateCardQuality);
 $('.bottom-box').on('click', '.downvote', updateCardQuality);
-$('.bottom-box').on('click', '.completed-button', completeTask);
 $('.save-btn').on('click', emptyInputs);
 
 function disableButton() {
@@ -88,7 +84,7 @@ function loadSavedCards() {
     var localStorageArray = Object.keys(localStorage);
 }
 
-function deleteCard (e) {
+function deleteCard(e) {
     var cardHTML = $(event.target).closest('.card-container');
     var cardHTMLId = cardHTML[0].index;
     var key = $(event.target).closest('.card-container')[0].dataset.set;
@@ -96,7 +92,7 @@ function deleteCard (e) {
     localStorage.removeItem(key);
 }
 
-function upvoteCard(event){
+function upvoteCard(event) {
     var currentQuality = $($(event.target).siblings('p.quality').children()[0]).text().trim();
     var qualityVariable;
     if (currentQuality === 'None') {
@@ -111,7 +107,7 @@ function upvoteCard(event){
     $($(event.target).siblings('p.quality').children()[0]).text(qualityVariable);
 }
 
-function downvoteCard(event){
+function downvoteCard(event) {
     var currentQuality = $($(event.target).siblings('p.quality').children()[0]).text().trim();
     var qualityVariable;
     if (currentQuality === 'Critical') {
