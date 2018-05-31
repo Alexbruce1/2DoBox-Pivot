@@ -7,6 +7,8 @@ $('.bottom-box').on('keyup', '.body-of-card', updateEditedBody);
 $('.bottom-box').on('click', '.delete-button', deleteCard);
 $('.bottom-box').on('click', '.upvote', upvoteCard);
 $('.bottom-box').on('click', '.downvote', downvoteCard);
+$('.bottom-box').on('click', '.upvote', updateCardQuality);
+$('.bottom-box').on('click', '.downvote', updateCardQuality);
 $('.bottom-box').on('click', '.completed-button', completeTask);
 
 var qualityVariable = "Normal";
@@ -22,6 +24,7 @@ function disableButton() {
 // $('.delete-button').on('click', )
 $('.save-btn').on('click', emptyInputs);
 $(document).ready(loadSavedCards)
+
 
 
 
@@ -83,6 +86,16 @@ function localStoreCard(title, body, quality, id) {
     var cardKey = id;
     return cardKey;
 };
+
+function updateCardQuality(e) {
+    var qualityWrapper = $(event.target).siblings('.quality');
+    var qualityVariable = qualityWrapper.children('.qualityVariable');
+    var key = $(event.target).closest('.card-container')[0].dataset.set;
+    var storedCard = JSON.parse(localStorage.getItem(key));
+    storedCard.quality = qualityVariable.text();
+    var stringifiedCard = JSON.stringify(storedCard);
+    localStorage.setItem(key, stringifiedCard);
+}
 
 function loadSavedCards() {
     for (var i = 0; i < localStorage.length; i++) {
